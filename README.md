@@ -44,4 +44,3 @@ Incoming data with a data earlier than the data in /timestamps/lak-attendance.tx
 
 To reset the timing, delete the .txt file.
 
-To reset the 
