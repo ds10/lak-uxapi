@@ -27,10 +27,10 @@ uxapilocation= to the location for incoming files.
 
 Templates are stored in the /template directory
 
-fields for substitution are marked **LIKETHIS**
+fields for substitution are marked \*\*LIKETHIS\*\*
 
 TSV files for conversion go in the /incoming folder
-if the TSV file had a field heading called LIKETHIS then this would replace the **LIKETHIS** values in the template, before being sent to the LRW.
+if the TSV file had a field heading called LIKETHIS then this would replace the \*\*LIKETHIS\*\* values in the template, before being sent to the LRW.
 
 # Example #
 
