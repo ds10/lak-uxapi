@@ -4,6 +4,12 @@ UxAPI Translator for LAK Hackathon
 
 It takes TSV (tab seperated files), converts to xAPI according to a template, and sends to a learning records store.
 
+# Prerequisites #
+Either from apt or pip or similar, you will need
+- requests
+- dateutil
+- pytz
+
 # Running #
 
 This uses Python 2.6+  (may work on older)
@@ -12,7 +18,8 @@ This uses Python 2.6+  (may work on older)
 
 Configuring
 
-Rename demo.config to lak.config
+- cp demo.config to <shortname>.config, e.g. lak.config. There can be multiple such files should interacting with different stores be necessary
+- create a file uxapi.config containing one <shortname>=<shortname>.config line per config file from the previous step 
 
 Change:
 
