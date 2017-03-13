@@ -1,3 +1,4 @@
+import os
 import json
 import requests
 import base64
@@ -82,9 +83,11 @@ class xapiconverter:
 
 
                 xapi = json.loads(statement)
-                xapiTSString = xapi['timestamp']+'+00:00'
-                xapiTS = dateutil.parser.parse(xapiTSString)
-
+                if 'timestamp' in xapi:
+                    xapiTSString = xapi['timestamp'] +'+00:00'
+                    xapiTS = dateutil.parser.parse(xapiTSString)
+                else:
+                    xapiTS = pytz.utc.localize(datetime.datetime.fromtimestamp(os.path.getmtime(filelocation)))
 
                 if xapiTS.tzinfo is None:
                     xapiTS = pytz.utc.localize(xapiTS)
@@ -100,7 +103,6 @@ class xapiconverter:
 
                     print lasttimedone
                     if xapiTS > lasttimedone:
-
                         tsString = xapiTS.strftime("%Y-%m-%dT%H:%M:%S.000Z")
                         xapi['timestamp'] = tsString
                         statement = json.dumps(xapi)
