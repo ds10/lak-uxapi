@@ -67,7 +67,11 @@ class xapiconverter:
                 count = 0
                 obj ={}
                 for item in arr:
-                    obj[headerarr[count]]=item
+                    if count >= len(headerarr):
+                        print "number of header columns does not match number of data columns at line " + str(rowcount)
+                        exit()
+                    field = headerarr[count]
+                    obj[field]=item
                     count = count +1
                 statement = template
                 statement = statement.replace('**HOMEPAGE**', homepage)
