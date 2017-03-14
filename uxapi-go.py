@@ -3,6 +3,7 @@ from configreader import configreader
 from xapiconverter import xapiconverter
 import dateutil.parser
 import os.path
+import sys
 
 masterconfig = open('uxapi.config', 'r')
 
@@ -28,13 +29,16 @@ for row in masterconfig:
 
                 print '\'' + arr[0] + '\' data found'
 
-                try:
+                if len(sys.argv) > 1:
                     latest = conv.readandconvert(ts,arr[0],c.uxapilocation+filename,c.homepage,c.xapiusername,c.xapipassword)
-                    d = open('timestamps/' + inst + '-' + arr[0] + '.txt', 'w')
-                    d.write(latest)
-                    d.close()
-                except Exception as e:
-                    print "failure processing " + filename + " with " + arr[0] + ".json: " + str(e)
+                else:
+                    try:
+                        latest = conv.readandconvert(ts,arr[0],c.uxapilocation+filename,c.homepage,c.xapiusername,c.xapipassword)
+                        d = open('timestamps/' + inst + '-' + arr[0] + '.txt', 'w')
+                        d.write(latest)
+                        d.close()
+                    except Exception as e:
+                        print "failure processing " + filename + " with " + arr[0] + ".json: " + str(e)
 
 
 
